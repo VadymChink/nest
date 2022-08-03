@@ -1,5 +1,5 @@
 import {Injectable} from '@nestjs/common';
-import {UpdateUserDto} from './dto/update-user.dto';
+import {UpdateUserDto} from './dto';
 import {PrismaService} from "../core/prisma.service";
 import {Prisma, User} from '@prisma/client';
 
@@ -15,6 +15,12 @@ export class UserService {
     getOneUserById(userId: string) {
         return this.prismaService.user.findFirst({
             where: {id: Number(userId)}
+        })
+    }
+
+    getOneUserByEmail(email: string) {
+        return this.prismaService.user.findFirst({
+            where: {email}
         })
     }
 
@@ -36,7 +42,7 @@ export class UserService {
     }
 
     deleteUserById(userId: string) {
-         this.prismaService.user.delete({
+        this.prismaService.user.delete({
             where: {id: Number(userId)}
         })
 
