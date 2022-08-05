@@ -41,11 +41,9 @@ export class UserService {
         })
     }
 
-    deleteUserById(userId: string) {
-        this.prismaService.user.delete({
+   deleteUserById(userId: string){
+        return this.prismaService.user.delete({
             where: {id: Number(userId)}
         })
-
-        return 'User Deleted';
     }
 }
